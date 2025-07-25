@@ -1,4 +1,4 @@
-# app
+# Real Event App
 
 A new Flutter project.
 
