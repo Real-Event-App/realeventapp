@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'app.dart'; // onde colocas o teu MaterialApp
+import 'package:flutter_riverpod/flutter_riverpod.dart'; // importa o riverpod
+import 'routes/app_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -8,7 +9,11 @@ Future<void> main() async {
     url: 'https://pgpryaelqhspwhplttzb.supabase.co',
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBncHJ5YWVscWhzcHdocGx0dHpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzNjY0MzUsImV4cCI6MjA2ODk0MjQzNX0.hPcn2J8zSKTC_rY8OeCmhLdJLhZEMT-yV1EZjYGFD2A',
   );
-  runApp(const MyApp());
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Real Event App',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -37,7 +42,9 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: AppRouter.routes,
+      initialRoute: AppRouter.loginPage,
+      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

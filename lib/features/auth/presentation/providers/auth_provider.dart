@@ -1,3 +1,5 @@
+//import 'dart:nativewrappers/_internal/vm/lib/internal_patch.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart'; // Para Supabase.instance.client
 import '../../data/repositories/auth_repository_impl.dart'; // Caminho para o teu AuthRepositoryImpl
@@ -19,6 +21,7 @@ class AuthNotifier extends StateNotifier<AsyncValue<domain.User?>> {
 
   Future<void> login(String identif, String password) async {
     state = const AsyncLoading();
+    print("Login attempt with identifier: $identif and password: $password");
     try {
       final user = await repository.login(identifier: identif, password: password);
       state = AsyncData(user);

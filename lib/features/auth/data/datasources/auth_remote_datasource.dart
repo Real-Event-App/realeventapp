@@ -10,7 +10,7 @@ class AuthRemoteDatasource {
     final result = await client
         .from('users')
         .select('phone')
-        .or('username.eq.$identifier,phone.eq.$identifier')
+        //.or('username.eq.$identifier,phone.eq.$identifier')
         .maybeSingle();
 
     if (result == null) {
